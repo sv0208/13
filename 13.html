@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+  
+
+         function putRect(){
+          var x = event.offsetX;
+          var y = event.offsetY;
+           document.getElementById("x").value = "x=" + x;
+           document.getElementById("y").value = "y=" + y;
+           
+           ctx.strokeStyle = 'black';
+           ctx.strokeRect(0,0,640,480);
+           ctx.fillStyle = color; 
+           ctx.fillRect(x,y,20,20);
+          
+         }
+         function draw() {
+          var canvas = document.getElementById('canvas');
+              var ctx = canvas.getContext('2d');
+              
+           var x = document.getElementById("x").value;
+           var y = document.getElementById("y").value;
+           var colorLine = document.getElementById("colorLine").value;
+           var colorFill = document.getElementById("colorFill").value;
+           var wid = document.getElementById("width").value;
+           ctx.beginPath();
+           ctx.fillStyle = "white";
+           ctx.fillRect(0,0,640,480);
+          ctx.save();
+          ctx.beginPath();
+          ctx.translate(320, 240);
+          ctx.scale(x/y, 1);
+          ctx.arc(0, 0, y, 0, Math.PI * 2, true);
+          if(document.getElementById("fill").checked){
+            ctx.fillStyle = colorFill;
+            ctx.fill();
+               }
+          ctx.restore();
+          ctx.closePath();
+          ctx.strokeStyle = colorLine;
+          ctx.lineWidth = wid;
+          ctx.stroke();
+          }
+
+        </script>
+    </head> 
+    <body onload="draw()">
+      Радиус по x:<input type="number" min="1" max="320" step="1" value="180" id="x" onchange="draw()"></input><br>
+      Радиус по y:<input type="number" min="1" max="240" step="1" value="100" id="y" onchange="draw()"></input><br>
+      Толщина линии:<input type="number" min="1" max="50" step="1" value="5" id="width" onchange="draw()"></input><br>
+      Цвет линии:<input type="color" value="#ff0000" id="colorLine" onchange="draw()"></input><br>
+      Цвет заливки:<input type="color" value="#ADFF2F" id="colorFill" onchange="draw()"><br>
+      Требуется заливка:<input type="checkbox" id="fill" onchange="draw()"></input><br>
+      <canvas id="canvas" width="640" height="480"></canvas>
+    </body>
+</html> 
