@@ -2,20 +2,7 @@
 <html>
     <head>
         <script>
-  
-
-         function putRect(){
-          var x = event.offsetX;
-          var y = event.offsetY;
-           document.getElementById("x").value = "x=" + x;
-           document.getElementById("y").value = "y=" + y;
-           
-           ctx.strokeStyle = 'black';
-           ctx.strokeRect(0,0,640,480);
-           ctx.fillStyle = color; 
-           ctx.fillRect(x,y,20,20);
-          
-         }
+            
          function draw() {
           var canvas = document.getElementById('canvas');
               var ctx = canvas.getContext('2d');
